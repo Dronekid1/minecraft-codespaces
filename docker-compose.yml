@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  minecraft-desktop:
+    build: .
+    ports:
+      - "6080:6080"
+      - "5901:5901"
+    environment:
+      - DISPLAY=:1
+      - VNC_RESOLUTION=1920x1080
+    volumes:
+      - minecraft-data:/workspace/minecraft
+    stdin_open: true
+    tty: true
+
+volumes:
+  minecraft-data:
