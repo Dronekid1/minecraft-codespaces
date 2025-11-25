@@ -1,24 +1,19 @@
 {
   "name": "Minecraft Java Edition",
-  "build": {
-    "dockerfile": "../Dockerfile",
-    "context": ".."
-  },
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "minecraft-desktop",
+  "workspaceFolder": "/workspace",
   "forwardPorts": [6080, 5901],
   "portsAttributes": {
     "6080": {
       "label": "noVNC Desktop",
-      "onAutoForward": "notify"
+      "onAutoForward": "openBrowser"
     },
     "5901": {
       "label": "VNC Server",
       "onAutoForward": "ignore"
     }
   },
-  "postCreateCommand": "mkdir -p /workspace/minecraft",
-  "customizations": {
-    "vscode": {
-      "extensions": []
-    }
-  }
+  "postCreateCommand": "bash /opt/startup/start.sh &",
+  "remoteUser": "root"
 }
