@@ -1,0 +1,24 @@
+{
+  "name": "Minecraft Java Edition",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "forwardPorts": [6080, 5901],
+  "portsAttributes": {
+    "6080": {
+      "label": "noVNC Desktop",
+      "onAutoForward": "notify"
+    },
+    "5901": {
+      "label": "VNC Server",
+      "onAutoForward": "ignore"
+    }
+  },
+  "postCreateCommand": "mkdir -p /workspace/minecraft",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
